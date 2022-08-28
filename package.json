@@ -19,10 +19,10 @@
   "homepage": "https://github.com/dgreif/ring-client-example#readme",
   "dependencies": {
     "dotenv": "^16.0.1",
-    "ring-client-api": "^11.0.7"
+    "ring-client-api": "^11.2.0"
   },
   "devDependencies": {
     "@types/ws": "^8.5.3",
-    "typescript": "^4.7.4"
+    "typescript": "^4.8.2"
   }
 }
