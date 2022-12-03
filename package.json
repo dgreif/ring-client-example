@@ -6,8 +6,7 @@
   "scripts": {
     "start": "npm run ts-example",
     "auth": "ring-auth-cli",
-    "ts-example": "tsc && node lib/example.js",
-    "js-example": "node example.js"
+    "ts-example": "tsc && node lib/example.js"
   },
   "repository": {
     "type": "git",
