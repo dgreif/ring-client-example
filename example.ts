@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { RingApi } from "ring-client-api";
+import { PushNotificationAction, RingApi } from "ring-client-api";
 import { readFile, writeFile } from "fs";
 import { promisify } from "util";
 
@@ -73,17 +73,18 @@ async function example() {
 
   if (allCameras.length) {
     allCameras.forEach((camera) => {
-      camera.onNewNotification.subscribe(({ ding, subtype }) => {
-        const event =
-          ding.detection_type === "motion"
-            ? "Motion detected"
-            : subtype === "ding"
-            ? "Doorbell pressed"
-            : `Video started (${subtype})`;
+      camera.onNewNotification.subscribe((notification) => {
+        const action = notification.android_config.category,
+          event =
+            action === PushNotificationAction.Motion
+              ? "Motion detected"
+              : action === PushNotificationAction.Ding
+              ? "Doorbell pressed"
+              : `Video started (${action})`;
 
         console.log(
           `${event} on ${camera.name} camera. Ding id ${
-            ding.id
+            notification.data.event.ding.id
           }.  Received at ${new Date()}`
         );
       });
