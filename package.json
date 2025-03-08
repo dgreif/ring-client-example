@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run ts-example",
     "auth": "ring-auth-cli",
-    "ts-example": "tsc && node lib/example.js"
+    "ts-example": "tsc && node --env-file=.env lib/example.js"
   },
   "repository": {
     "type": "git",
@@ -17,11 +17,9 @@
   },
   "homepage": "https://github.com/dgreif/ring-client-example#readme",
   "dependencies": {
-    "dotenv": "^16.4.7",
     "ring-client-api": "^13.2.1"
   },
   "devDependencies": {
-    "@types/ws": "^8.18.0",
     "typescript": "^5.8.2"
   }
 }
