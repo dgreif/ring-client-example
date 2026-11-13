@@ -6,7 +6,10 @@
   "scripts": {
     "start": "npm run ts-example",
     "auth": "ring-auth-cli",
-    "ts-example": "tsc && node --env-file=.env lib/example.js"
+    "ts-example": "tsc && node --env-file=.env lib/example.js",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc",
+    "smoke": "node -e \"const {spawnSync}=require('child_process');const r=spawnSync('ring-auth-cli',['--help'],{input:'',timeout:15000,encoding:'utf8'});if(!/refresh token/.test(r.stdout||''))process.exit(1)\""
   },
   "repository": {
     "type": "git",
