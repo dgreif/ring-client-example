@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          # Newest Node major allowed by ring-client-api's `engines` (Node 26 LTS is not yet supported)
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run build
+      - name: Smoke test ring-auth-cli
+        run: |
+          test -x node_modules/.bin/ring-auth-cli
+          npm run smoke
+      - name: Verify --env-file support
+        run: |
+          echo "RING_REFRESH_TOKEN=dummy" > /tmp/ci.env
+          node --env-file=/tmp/ci.env -e "if (process.env.RING_REFRESH_TOKEN !== 'dummy') process.exit(1)"
