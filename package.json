@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/dgreif/ring-client-example#readme",
   "dependencies": {
-    "ring-client-api": "^13.2.1"
+    "ring-client-api": "^14.3.0"
   },
   "devDependencies": {
     "typescript": "^5.8.2"
